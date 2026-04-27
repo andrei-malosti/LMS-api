@@ -22,4 +22,6 @@ public class RegisterRequestDTO {
 	
 	@NotNull(message = "é necessario passar um cargo")
 	private Role role;
+	
+	private String organizationName;
 }
