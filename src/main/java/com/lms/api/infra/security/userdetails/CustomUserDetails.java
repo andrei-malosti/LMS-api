@@ -21,8 +21,12 @@ public class CustomUserDetails implements UserDetails {
 		this.user = user;
 	}
 
-	public UUID getTenantId() {
-		return user.getOrganization().getId();
+	public UUID getOrganizationId() {
+		return user.getOrganization() != null ? user.getOrganization().getId() : null;
+}
+	
+	public UUID getUserId() {
+		return user.getId();
 	}
 
 	@Override

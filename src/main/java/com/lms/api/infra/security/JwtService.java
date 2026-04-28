@@ -30,7 +30,12 @@ public class JwtService {
 
     public UUID extractOrganizationId(String token) {
         String organizationId = extractClaim(token, claims -> claims.get("organizationId", String.class));
-        return UUID.fromString(organizationId);
+        return organizationId != null ? UUID.fromString(organizationId) : null;
+    }
+    
+    public UUID extractUserId(String token) {
+    	String userId = extractClaim(token, claims -> claims.get("userId", String.class));
+    	return UUID.fromString(userId);
     }
 
     public <T> T extractClaim(String token, Function<Claims, T> claimsResolver) {
@@ -40,7 +45,10 @@ public class JwtService {
 
     public String generateToken(CustomUserDetails userDetails) {
         Map<String, Object> claims = new HashMap<>();
-        claims.put("organizationId", userDetails.getTenantId().toString());
+        claims.put("userId", userDetails.getUserId());
+        if(userDetails.getOrganizationId() != null) {
+        claims.put("organizationId", userDetails.getOrganizationId().toString());
+        }
         claims.put("role", userDetails.getAuthorities());
 
         return Jwts.builder()

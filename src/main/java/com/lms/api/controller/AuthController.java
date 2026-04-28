@@ -8,7 +8,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.lms.api.dto.LoginRequestDTO;
-import com.lms.api.dto.LoginResponseDTO;
 import com.lms.api.dto.RegisterRequestDTO;
 import com.lms.api.service.AuthService;
 
@@ -24,12 +23,11 @@ public class AuthController {
 	
 	@PostMapping("/register")
 	public ResponseEntity<?> create(@RequestBody @Valid RegisterRequestDTO registerRequest){
-		authService.register(registerRequest);
-		return ResponseEntity.status(HttpStatus.CREATED).build();
+		return ResponseEntity.status(HttpStatus.CREATED).body(authService.register(registerRequest));
 	}
 	
 	@PostMapping("/login")
-	public ResponseEntity<LoginResponseDTO> login(@RequestBody @Valid LoginRequestDTO loginRequest){
+	public ResponseEntity<?> login(@RequestBody @Valid LoginRequestDTO loginRequest){
 		return ResponseEntity.ok(authService.login(loginRequest));
 	}
 	
