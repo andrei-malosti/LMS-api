@@ -1,6 +1,5 @@
 package com.lms.api.dto;
 
-import jakarta.validation.constraints.NotBlank;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -10,9 +9,8 @@ import lombok.NoArgsConstructor;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class CourseRegisterDTO {
+public class CoursePartialRegisterDTO {
 
-	@NotBlank(message = "Titulo do curso é obrigatorio")
 	private String title;
 	
 	private String description;

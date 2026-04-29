@@ -6,15 +6,17 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
+
 @Getter
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class CourseRegisterDTO {
+public class LessonRegisterDTO {
 
-	@NotBlank(message = "Titulo do curso é obrigatorio")
+	@NotBlank(message = "Titulo da lição é obrigatorio")
 	private String title;
 	
-	private String description;
+	@NotBlank(message = "Conteudo da lição é obrigatorio")
+	private String content;
 	
 }
