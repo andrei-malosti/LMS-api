@@ -36,6 +36,9 @@ public class Enrollment {
 	@JoinColumn(nullable = false)
 	private Course course;
 	
+	@Column(nullable = false)
+	private Boolean isActive;
+	
 	@CreationTimestamp
 	@Column(nullable = false ,updatable = false)
 	private OffsetDateTime enrolledAt;

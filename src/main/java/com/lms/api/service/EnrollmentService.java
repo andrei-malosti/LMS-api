@@ -56,6 +56,7 @@ public class EnrollmentService {
 		return Enrollment.builder()
 				.user(user)
 				.course(course)
+				.isActive(true)
 				.enrolledAt(OffsetDateTime.now())
 				.build();
 }

@@ -6,6 +6,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -31,9 +32,19 @@ public class LessonController {
 		return ResponseEntity.status(HttpStatus.CREATED).body(lessonService.create(lessonRegister, courseId, UserContext.getUserId()));
 	}
 	
+	@PatchMapping("/active/{lessonId}")
+	public ResponseEntity<?> active(@PathVariable UUID lessonId){
+		return ResponseEntity.ok(lessonService.active(lessonId, UserContext.getUserId()));
+	}
+	
+	@PatchMapping("/desactive/{lessonId}")
+	public ResponseEntity<?> desactive(@PathVariable UUID lessonId, UUID userId){
+		return ResponseEntity.ok(lessonService.desactive(lessonId, UserContext.getUserId()));
+	}
+	
 	@GetMapping("/course/{courseId}")
 	public ResponseEntity<?> findCourseLessons(@PathVariable UUID courseId, Pageable pageable){
-		return ResponseEntity.ok(lessonService.findCourseLessons(courseId, pageable));
+		return ResponseEntity.ok(lessonService.findCourseLessons(courseId, UserContext.getUserId(), pageable));
 	}
 	
 }

@@ -31,6 +31,9 @@ public class Lesson {
 	@Column(nullable = false)
 	private String content;
 	
+	@Column(nullable = false)
+	private Boolean isActive;
+	
 	@ManyToOne
 	@JoinColumn(nullable = false)
 	private Course course;
